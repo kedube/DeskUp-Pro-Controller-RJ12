@@ -13,6 +13,16 @@ substitutions:
   desk_min_height: "25.2"
   desk_max_height: "50.9"
 
+  #Multiplier used to convert a desk height into mm for the set height command (Desk Height slider, Height Slider & nudge).
+  #The desk controller always expects mm for this command, even when its handset shows heights in other units.
+  #10 when the handset height x 10 = mm, 25.4 when the handset height x 25.4 = mm.
+  desk_height_to_mm: "10"
+
+  #Added to a desk height before it is converted to mm for the set height command.
+  #Desks report heights rounded down to 0.1, so when 0.1 is more than 1mm (e.g. desk_height_to_mm of 25.4)
+  #0.05 aims for the middle of the target's 0.1 band rather than its lower edge, which otherwise lands 0.1 short.
+  desk_height_aim_offset: "0"
+
 packages:
   # Package needed when flashing devices to let users configure Wi-Fi on their device when 1st powered up.
   # This is not needed if you copy the code from github and adopt it yourself
@@ -424,7 +434,7 @@ script:
       # Set specific height by calculating hex codes to send to the desk controller
       - uart.write: 
           data: !lambda |-
-            auto height_mm = static_cast<int>(newHeight_cm * 10);      // Convert cm to mm
+            auto height_mm = static_cast<int>((newHeight_cm + ${desk_height_aim_offset}) * ${desk_height_to_mm});      // Convert desk height to mm
           
             // Adjust height by any configured offset
             if (id(number_deskHeight).has_state() && !std::isnan(id(number_deskHeight).state) && 
