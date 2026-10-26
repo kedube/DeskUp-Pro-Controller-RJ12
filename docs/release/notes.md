@@ -23,10 +23,10 @@
 
 
 - Run powershell command BuildDeskUpProRJ12Release.ps1 found in c:\[userfolder]\esphome
-- This will build a firmware version for all 3 variants (S3, C6, C6 with encryption).
+- This will build a firmware version for all 4 variants (S3, S3 with encryption, C6, C6 with encryption).
 
-  - In VSCode the 6 bin files and a firmware.md5 file for each should already be listed under commits. 
-  - Update the version number in all 3 manifest json files
+  - In VSCode the 8 bin files and a firmware.md5 file for each should already be listed under commits. 
+  - Update the version number in all 4 manifest json files
   - Wait until the the code changes are committed to Git for 24 hours due to caching in user's Home Assistant's of files downloaded from Git.
   - Now check these updated files into Git
 

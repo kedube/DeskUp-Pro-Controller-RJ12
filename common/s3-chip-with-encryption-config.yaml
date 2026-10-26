@@ -1,0 +1,14 @@
+# This yaml adds api encryption to the base.yaml (which is for the S3 chip).
+# Unlike c6-chip-with-encryption-config.yaml it only adds api encryption, the Web Server (Rest Api),
+# captive portal and normal (unsigned) OTA updates are all kept.
+# It's used in combination with the config-to-flash-s3-with-encryption.yaml which at the time of flashing devices to ship also
+# sets a provisioning timeout window of 10 minutes.
+
+packages:
+  device_base: !include base.yaml
+
+api:
+  encryption:
+    # No key is set here, instead it is set during provisioning (by the provisioning section)
+    # If a device is later adopted in ESPHome it will then be given a new key.
+    # This was hardened in ESPHome 2026.7.0 so during initial device provisioning that connection is encrypted.

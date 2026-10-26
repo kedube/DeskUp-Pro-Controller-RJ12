@@ -1,0 +1,24 @@
+{
+  "name": "DeskUp Pro Controller",
+  "version": "2026.5.0",
+  "home_assistant_domain": "esphome",
+  "new_install_skip_erase": false,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "firmware-s3-with-encryption/deskup-pro.factory.bin",
+          "offset": 0
+        }
+      ],
+      "ota":
+        {
+          "md5": "4632aa5c014106af7dffcca0c2e472b7",
+          "path": "firmware-s3-with-encryption/deskup-pro.ota.bin",
+          "release_url": "https://github.com/SmartHomeGuys/DeskUp-Pro-Controller-RJ12/blob/main/CHANGELOG.md",
+          "summary": ""
+        }
+    }
+  ]
+}
